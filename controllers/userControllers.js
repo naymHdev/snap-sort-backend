@@ -4,17 +4,23 @@ const User = require("../models/userModel");
 async function handleRegisterUsers(req, res) {
   try {
     const data = req.body;
+
+    // Creating the user in the database
     const result = await User.create(data);
-    return res.status(200).json({
+
+    console.log("User created:", result);
+
+    return res.status(201).json({
       status: "Success",
-      message: "User created successful",
+      message: "User created successfully",
       data: result,
     });
   } catch (error) {
-    res.status(400).json({
+    console.error("Error creating user:", error);
+
+    res.status(500).json({
       status: "Failed",
-      message: "Something went wrong!!",
-      error: error,
+      message: "An internal server error occurred.",
     });
   }
 }
@@ -36,12 +42,7 @@ async function handleLoginUser(req, res) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    // Create JWT Token
-    const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, {
-      expiresIn: "1h",
-    });
-
-    res.json({ message: "Login successful", token });
+    res.json({ message: "Login successful" });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }

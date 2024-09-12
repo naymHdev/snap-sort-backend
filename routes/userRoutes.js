@@ -6,20 +6,13 @@ const {
   handleUserProfile,
 } = require("../controllers/userControllers"); // user route controller's
 
-
 // Register User
-router.post("/api/user/register", handleRegisterUsers);
+router.post("/", handleRegisterUsers);
 
 // Login User
-router.post("/api/user/register/login", handleLoginUser);
+router.post("/", handleLoginUser);
 
 // Get User Profile (Protected Route)
-router.get("/api/user", handleUserProfile);
-
-// router
-//   .route("/")
-//   .post(handleRegisterUsers)
-//   .post(handleLoginUser)
-//   .get(handleUserProfile);
+router.get("/", handleUserProfile);
 
 module.exports = router;
