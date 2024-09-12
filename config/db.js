@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-require("dotenv").config(); // Load environment variables
+require("dotenv").config();
 
 // MongoDB Connection URI
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017";

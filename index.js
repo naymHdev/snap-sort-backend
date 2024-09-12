@@ -3,8 +3,9 @@ const cors = require("cors");
 require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
-const userRouter = require("./routes/userRoutes");
 const connectDB = require("./config/db");
+const userRouter = require("./routes/userRoutes");
+const imageRouter = require("./routes/imagesRoute");
 
 // Middleware for parsing JSON requests
 const corsOptions = {
@@ -25,6 +26,9 @@ app.get("/", (req, res) => {
 
 // User routers
 app.use("/api/user", userRouter);
+
+// image router
+app.use("/api/images", imageRouter);
 
 // Start the server
 app.listen(PORT, () => {
