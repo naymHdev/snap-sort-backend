@@ -44,7 +44,25 @@ async function handleGetImages(req, res) {
   }
 }
 
+async function handleDeleteAllImages(req, res) {
+  try {
+    await Image.deleteMany({});
+
+    return res.status(200).json({
+      status: "Success",
+      message: "All images deleted successfully",
+    });
+  } catch (error) {
+    console.error("Error deleting all images:", error);
+    res.status(500).json({
+      status: "Failed",
+      message: "An internal server error occurred.",
+    });
+  }
+}
+
 module.exports = {
   handleAddImages,
   handleGetImages,
+  handleDeleteAllImages,
 };
