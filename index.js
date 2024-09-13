@@ -9,7 +9,13 @@ const imageRouter = require("./routes/imagesRoute");
 
 // Middleware for parsing JSON requests
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://snapsort-front.vercel.app"],
+  origin: [
+    "http://localhost:5173",
+    "https://snapsort-front.vercel.app",
+    "https://snapsort-front.vercel.app",
+    "https://snap-sort-backend.vercel.app",
+    "https://snap-sort.netlify.app",
+  ],
   credentials: true,
   optionSuccessStatus: 200,
 };
