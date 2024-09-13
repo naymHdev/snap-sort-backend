@@ -61,8 +61,30 @@ async function handleDeleteAllImages(req, res) {
   }
 }
 
+async function handleUpdateImages(req, res) {
+  const { orderedImages } = req.body;
+
+  try {
+    // Loop through the orderedImages array and update each image
+    await Promise.all(
+      orderedImages.map(async (image) => {
+        const { _id, order, isFeatured } = image;
+
+        // Find image by ID and update its order and isFeatured fields
+        await Image.findByIdAndUpdate(_id, { order, isFeatured });
+      })
+    );
+
+    res.status(200).json({ message: "Image order updated successfully" });
+  } catch (error) {
+    console.error("Error updating image order:", error);
+    res.status(500).json({ message: "Failed to update image order" });
+  }
+}
+
 module.exports = {
   handleAddImages,
   handleGetImages,
   handleDeleteAllImages,
+  handleUpdateImages,
 };
