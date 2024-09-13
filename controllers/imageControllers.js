@@ -45,15 +45,17 @@ async function handleGetImages(req, res) {
 }
 
 async function handleDeleteAllImages(req, res) {
+  const imageId = req.params.id;
+  // console.log("imageId", imageId);
   try {
-    await Image.deleteMany({});
+    await Image.deleteMany({ _id: { $in: imageId } });
 
     return res.status(200).json({
       status: "Success",
-      message: "All images deleted successfully",
+      message: "Selected images deleted successfully",
     });
   } catch (error) {
-    console.error("Error deleting all images:", error);
+    console.error("Error deleting selected images:", error);
     res.status(500).json({
       status: "Failed",
       message: "An internal server error occurred.",
